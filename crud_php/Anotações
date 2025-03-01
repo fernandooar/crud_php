@@ -1,0 +1,131 @@
+/gestao_escolar/
+│── /config/
+│   └── db.php             # Configuração do banco de dados
+│── /public/
+│   └── index.php          # Página inicial (redireciona para login)
+│   └── login.php          # Página de login
+│── /includes/
+│   └── auth.php           # Funções de autenticação
+│── /actions/
+│   └── login_action.php   # Processamento do formulário de login
+│   └── logout.php         # Processamento de logout
+│── /views/
+│   └── dashboard_admin.php   # Dashboard do administrador
+│   └── dashboard_professor.php # Dashboard do professor
+│   └── dashboard_aluno.php    # Dashboard do aluno
+│── /css/
+│   └── styles.css         # Estilos CSS
+│── /js/
+│   └── scripts.js         # Scripts JavaScript
+
+│── db.sql                 # Backu
+
+/config/
+
+    db.php: Este arquivo contém as configurações de conexão com o banco de dados. Certifique-se de:
+
+        Usar variáveis de ambiente para armazenar credenciais sensíveis (como usuário e senha do banco de dados) em vez de hardcoding no arquivo.
+
+        Proteger o acesso a este arquivo com permissões de arquivo adequadas ou colocando-o fora do diretório público.
+
+2. /public/
+
+    index.php: Redireciona para a página de login. Certifique-se de que o redirecionamento seja feito de forma segura e que não haja vazamento de informações sensíveis.
+
+    login.php: Página de login. Considere:
+
+        Adicionar validação de formulário no lado do cliente (JavaScript) e no lado do servidor (PHP).
+
+        Implementar proteção contra ataques de força bruta (por exemplo, limitar tentativas de login).
+
+        Usar HTTPS para garantir que os dados de login sejam transmitidos de forma segura.
+
+3. /includes/
+
+    auth.php: Contém funções de autenticação. Certifique-se de:
+
+        Usar funções seguras para hash de senhas, como password_hash() e password_verify().
+
+        Validar e sanitizar todas as entradas de usuário para evitar vulnerabilidades como SQL Injection e XSS.
+
+        Gerenciar sessões de forma segura (por exemplo, regenerar o ID da sessão após o login).
+
+4. /actions/
+
+    login_action.php: Processa o formulário de login. Certifique-se de:
+
+        Validar e sanitizar os dados de entrada.
+
+        Proteger contra SQL Injection usando prepared statements.
+
+        Redirecionar o usuário de forma segura após o login.
+
+    logout.php: Processa o logout. Certifique-se de:
+
+        Destruir a sessão corretamente usando session_destroy().
+
+        Redirecionar o usuário para a página de login após o logout.
+
+5. /views/
+
+    dashboard_admin.php, dashboard_professor.php, dashboard_aluno.php: Dashboards para diferentes tipos de usuários. Certifique-se de:
+
+        Restringir o acesso a cada dashboard com base no tipo de usuário autenticado.
+
+        Não expor informações sensíveis nos dashboards.
+
+        Validar permissões antes de exibir qualquer conteúdo.
+
+6. /css/
+
+    styles.css: Arquivo de estilos CSS. Considere:
+
+        Usar um pré-processador CSS como SASS ou LESS para facilitar a manutenção.
+
+        Organizar o código em módulos para melhorar a legibilidade.
+
+7. /js/
+
+    scripts.js: Arquivo de scripts JavaScript. Certifique-se de:
+
+        Validar entradas do usuário no lado do cliente para melhorar a experiência do usuário.
+
+        Proteger contra XSS (Cross-Site Scripting) ao manipular dados dinâmicos.
+
+8. db.sql
+
+    Este arquivo contém o backup do banco de dados. Certifique-se de:
+
+        Manter backups regulares e seguros.
+
+        Não deixar o arquivo acessível diretamente pelo navegador (por exemplo, movendo-o para fora do diretório público ou protegendo-o com regras no .htaccess).
+
+Melhorias Gerais:
+
+    Segurança:
+
+        Use HTTPS para proteger a comunicação entre o cliente e o servidor.
+
+        Implemente CSRF (Cross-Site Request Forgery) tokens em formulários críticos.
+
+        Valide e sanitize todas as entradas de usuário.
+
+    Organização:
+
+        Considere usar um framework PHP (como Laravel ou Symfony) para melhorar a estrutura e a segurança do projeto.
+
+        Separe ainda mais as responsabilidades (por exemplo, criar um diretório /models/ para classes de acesso ao banco de dados).
+
+    Testes:
+
+        Implemente testes automatizados (por exemplo, com PHPUnit) para garantir que o sistema funcione corretamente após alterações.
+
+    Documentação:
+
+        Adicione comentários no código para facilitar a manutenção.
+
+        Crie um arquivo README.md na raiz do projeto para documentar a estrutura e como configurar o ambiente.
+
+    Versionamento:
+
+        Use um sistema de controle de versão (como Git) para gerenciar o código-fonte.
